@@ -1,0 +1,401 @@
+/*Guerra Mario 
+ * ejercicio 1
+ * contador de 0-999, observado en displays
+*/
+int A=13;
+int B=12;
+int C=11;
+int D=10;
+int centenas=9;
+int decenas=8;
+int unidades=7;
+int valor_centena;
+int valor_decena;
+int valor_unidad;
+int contador=0;
+
+void setup() {
+  // put your setup code here, to run once:
+
+  pinMode(A,OUTPUT);
+  pinMode(B,OUTPUT);
+  pinMode(C,OUTPUT);
+  pinMode(D,OUTPUT);
+  pinMode(unidades,OUTPUT);
+  pinMode(decenas,OUTPUT);
+  pinMode(centenas,OUTPUT);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+ for(;contador<1000;contador++){
+      valor_centena=contador/100;
+      valor_decena=((contador-(valor_centena*100))/10);
+      valor_unidad=(contador-(valor_centena*100)-(valor_decena*10));
+      digitalWrite(unidades,HIGH);
+      digitalWrite(decenas,LOW);
+      digitalWrite(centenas,LOW);
+      //imprimir dato
+      contador_display(valor_unidad);
+      delay(50);
+      digitalWrite(unidades,LOW);
+      digitalWrite(decenas,HIGH);
+      digitalWrite(centenas,LOW);
+      //imprimir dato
+      contador_display(valor_decena);
+      delay(50);
+      digitalWrite(unidades,LOW);
+      digitalWrite(decenas,LOW);
+      digitalWrite(centenas,HIGH);
+      //imprimir dato
+      contador_display(valor_centena);
+      delay(50);
+       
+      
+  }
+    contador=0;
+}
+
+
+void contador_display(int numero){
+    switch(numero){
+
+   case 0:  
+  //0
+   digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 1:
+  //1
+   digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 2:
+  //2
+   digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 3:
+  //3
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 4:
+  
+  //4
+   digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 5:
+  //5
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 6:
+  //6
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 7:
+  //7
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 8:
+  //8
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+    break;
+    case 9:
+  //9
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////
+/*Guerra Mario
+ * contador mediante un pulsador de 0-99, se observa en displays.
+ * ejercicio 2
+*/
+int A=13;
+int B=12;
+int C=11;
+int D=10;
+
+int decenas=9;
+int unidades=8;
+int valor_decena;
+int valor_unidad;
+int contador=0;
+//Pulsador
+int pulsador=6;
+
+void setup() {
+
+  pinMode(A,OUTPUT);
+  pinMode(B,OUTPUT);
+  pinMode(C,OUTPUT);
+  pinMode(D,OUTPUT);
+  pinMode(unidades,OUTPUT);
+  pinMode(decenas,OUTPUT);
+  pinMode(pulsador,INPUT);
+
+}
+
+void loop() {
+  
+ if(digitalRead(pulsador)==HIGH&&contador<100){
+      delay(30);
+      contador=contador+1;
+      valor_decena=contador/10;
+      valor_unidad=contador-(valor_decena*10);
+      
+      digitalWrite(unidades,HIGH);
+      digitalWrite(decenas,LOW);
+      //imprimir dato
+      contador_display(valor_unidad);
+      delay(100);
+      
+      digitalWrite(unidades,LOW);
+      digitalWrite(decenas,HIGH);
+      //imprimir dato
+      contador_display(valor_decena);
+      delay(100);
+  }
+ else{
+      if(contador>=100){
+        contador=0;    //Reinicio del contador 
+        }
+  }
+
+}
+
+
+void contador_display(int numero){
+  
+    switch(numero){
+
+   case 0:  
+  //0
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 1:
+  //1
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 2:
+  //2
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 3:
+  //3
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 4:
+  
+  //4
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 5:
+  //5
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 6:
+  //6
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 7:
+  //7
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 8:
+  //8
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+    break;
+    case 9:
+  //9
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+
+    }
+}
+///////////////////////////////////////////////////////////////////////////
+/*Guerra Mario
+ * ejercicio 3
+ * medición de velocidad (0-99) de un motor mediante la lectura de un converso análogo digital, recordar que deben realizar la conversión de 0-1023 a 0-99 para tener todas las referencias de voltaje.
+ */
+
+//Declaración de variables
+
+int A=13;
+int B=12;
+int C=11;
+int D=10;
+
+int decenas=9;
+int unidades=8;
+int valor_decena=0;
+int valor_unidad=0;
+int motor=5;
+int valor_cad;
+int velocidad;
+
+void setup() {
+
+  pinMode(A,OUTPUT);
+  pinMode(B,OUTPUT);
+  pinMode(C,OUTPUT);
+  pinMode(D,OUTPUT);
+  pinMode(unidades,OUTPUT);
+  pinMode(decenas,OUTPUT);
+  pinMode(motor,OUTPUT);
+
+}
+
+void loop() {
+
+      valor_cad=analogRead(3);  
+      analogWrite(motor, valor_cad/4);  
+      delay(100);        
+      velocidad=map (valor_cad, 0, 1023, 0, 99);          
+       valor_decena=velocidad/10;          
+       digitalWrite(unidades,LOW);        
+        digitalWrite(decenas,HIGH);         
+        contador_display(valor_decena);        
+        delay(50);
+        valor_unidad=velocidad-(valor_decena*10);      
+        digitalWrite(unidades,HIGH);                     
+        digitalWrite(decenas,LOW);                      
+        contador_display(valor_unidad);                       
+        delay(50);
+}
+
+
+void contador_display(int numero){
+  
+    switch(numero){
+
+   case 0:  
+  //0
+   digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 1:
+  //1
+   digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 2:
+  //2
+   digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 3:
+  //3
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+    break;
+    case 4:
+  
+  //4
+   digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 5:
+  //5
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 6:
+  //6
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 7:
+  //7
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+    break;
+    case 8:
+  //8
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+    break;
+    case 9:
+  //9
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+
+    }
+}
